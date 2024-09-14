@@ -8,7 +8,7 @@ type Token struct {
 }
 
 const (
-	ILLEGAL = "ILLEAGL"
+	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 
 	// Identifiers + literals

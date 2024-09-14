@@ -87,16 +87,16 @@ func TestReturnStatements(t *testing.T) {
 
 	for _, stmt := range program.Statements {
 		returnStmt, ok := stmt.(*ast.ReturnStatement)
-		
+
 		if !ok {
- 		       	t.Errorf("stmt not *ast.returnStatement. got=%T", stmt)
-			continue		
+			t.Errorf("stmt not *ast.returnStatement. got=%T", stmt)
+			continue
 		}
 
 		if returnStmt.TokenLiteral() != "return" {
 			t.Errorf("returnStmt.TokenLiteral not 'return', got %q", returnStmt.TokenLiteral())
 		}
-	} 
+	}
 }
 
 func TestIdentifierExpression(t *testing.T) {
@@ -148,7 +148,7 @@ func TestIntegerLiteralExpression(t *testing.T) {
 
 	literal, ok := stmt.Expression.(*ast.IntegerLiteral)
 	if !ok {
-		t.Fatalf("exp not *ast.IntegerLiteral. got=%T", stmt.Expression)		
+		t.Fatalf("exp not *ast.IntegerLiteral. got=%T", stmt.Expression)
 	}
 	if literal.Value != 5 {
 		t.Errorf("literal.Value not %d. got=%d", 5, literal.Value)
@@ -160,8 +160,8 @@ func TestIntegerLiteralExpression(t *testing.T) {
 
 func TestParsingPrefixExpressions(t *testing.T) {
 	prefixTests := []struct {
-		input string
-		operator string
+		input        string
+		operator     string
 		integerValue int64
 	}{
 		{"!5;", "!", 5},
@@ -217,10 +217,10 @@ func testIntegerLiteral(t *testing.T, il ast.Expression, value int64) bool {
 }
 
 func TestParsingInfixExpressions(t *testing.T) {
-	infixTests := []struct{
-		input string
-		leftValue int64
-		operator string
+	infixTests := []struct {
+		input      string
+		leftValue  int64
+		operator   string
 		rightValue int64
 	}{
 		{"5 + 5;", 5, "+", 5},
@@ -268,8 +268,8 @@ func TestParsingInfixExpressions(t *testing.T) {
 }
 
 func TestOperatorPrecedenceParsing(t *testing.T) {
-	tests := []struct{
-		input string
+	tests := []struct {
+		input    string
 		expected string
 	}{
 		{
@@ -320,7 +320,6 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 			"3 + 4 * 5 == 3 * 1 + 4 * 5",
 			"((3 + (4 * 5)) == ((3 * 1) + (4 * 5)))",
 		},
-
 	}
 
 	for _, tt := range tests {
